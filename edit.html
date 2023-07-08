@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Composer Template</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!-- Latest compiled and minified bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+
+    <!--Prism-->
+    <link id="import-theme" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid" style="font-size:medium">
+        <img src="img/head.png" style="width: 100%;" />
+        <img src="img/head2 copy.png" style="width: 100%;" />
+
+        <div class="row" style="margin-top:20px">
+            <div class="col-6 d-inline-block"><b>DAG id:</b> bq_to_gcs_simple_dag
+            </div>
+            <!-- Small button groups (default and split) -->
+            <div class="col-6 btn-group d-inline-block">
+                <b>Versions: </b>
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    ae0ebf7 <i>Dec 14, 2022</i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">ae0ebf7 <i>Dec 14, 2022</i></a>
+                    <a class="dropdown-item" href="#">e9ebc92 <i>Nov 29, 2022</i></a>
+                    <a class="dropdown-item" href="#">097cace <i>Aug 14, 2022</i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content" style="width: 1200px;left:-300px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">DAG id: bq_to_gcs_simple_dag</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" onclick="showPython();">Python</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="showYAML();">YAML</a>
+                            </li>
+                        </ul>
+                        <pre><code class="language-yaml" style="font-size:small; "
+                            id="exampleFormControlTextarea1"></code></pre>
+                        <pre><code class="language-python" style="font-size:small; "
+                            id="exampleFormControlTextarea2"></code></pre>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group">
+                    <code class="language-yaml" style="font-size:medium; white-space: pre-wrap !important;"
+                        id="exampleFormControlTextarea1"></code>
+                    <!--textarea class="form-control" 
+                            style="font-size:medium; white-space: pre-wrap !important;"
+                            rows="30">Test composer template</textarea-->
+
+
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        bq_query_execute
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body">
+
+                                    <small id="emailHelp" class="form-text text-muted">Task id</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id" value="bq_query_execute">
+
+                                    <small id="emailHelp" class="form-text text-muted">Task type</small>
+                                    <input type="textbox" class="form-control" id="task_type"
+                                        aria-describedby="emailHelp" placeholder="Enter task_type"
+                                        value="BigQueryExecuteQueryOperator">
+
+                                    <small id="emailHelp" class="form-text text-muted">sql</small>
+                                    <input type="textbox" class="form-control" id="task_type"
+                                        aria-describedby="emailHelp" placeholder="Enter task_type"
+                                        value='SELECT * FROM composer-templates-dev.hmh_demo.covid WHERE case_reported_date = "2021-08-18"'>
+
+                                    <small id="emailHelp" class="form-text text-muted">Use legacy SQL</small>
+                                    <input type="textbox" class="form-control" id="task_type"
+                                        aria-describedby="emailHelp" placeholder="Enter task_type" value="False">
+
+                                    <small id="emailHelp" class="form-text text-muted">Write disposition</small>
+                                    <input type="textbox" class="form-control" id="task_type"
+                                        aria-describedby="emailHelp" placeholder="Enter task_type"
+                                        value="WRITE_TRUNCATE">
+
+                                    <small id="emailHelp" class="form-text text-muted">Allow large results</small>
+                                    <input type="textbox" class="form-control" id="task_type"
+                                        aria-describedby="emailHelp" placeholder="Enter task_type" value="True">
+
+                                    <small id="emailHelp" class="form-text text-muted">Destination Dataset.Table</small>
+                                    <input type="textbox" class="form-control" id="task_type"
+                                        aria-describedby="emailHelp" placeholder="Enter task_type"
+                                        value="composer-templates-shared.hmh_demo.tmp_covid">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        export_to_gcs
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <small id="emailHelp" class="form-text text-muted">Task id</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        value="export_to_gcs">
+
+                                    <small id="emailHelp" class="form-text text-muted">Task type</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id" value="BigQueryToGCSOperator">
+
+                                    <small id="emailHelp"
+                                        class="form-text text-muted">source_project_dataset_table</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id" value="composer-templates-dev.hmh_demo.tmp_covid">
+
+                                    <small id="emailHelp"
+                                        class="form-text text-muted">destination_cloud_storage_uris</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id"
+                                        value="gs://hmh_composer_demo/export_files/covid.csv">
+
+                                    <small id="emailHelp" class="form-text text-muted">export_format</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id" value="CSV">
+
+                                    <small id="emailHelp" class="form-text text-muted">field_delimiter</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id" value=",">
+
+                                    <small id="emailHelp" class="form-text text-muted">print_header</small>
+                                    <input type="textbox" class="form-control" id="task_id" aria-describedby="emailHelp"
+                                        placeholder="Enter task_id" value="True">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        dataproc_pyspark
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <small id="emailHelp" class="form-text text-muted">Task id</small>
+                                    <input type="textbox" class="form-control" id="task_id_3"
+                                        aria-describedby="emailHelp" placeholder="Enter task_id">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <button onclick="location.href = 'dag-list.html'" type="button" class="btn btn-primary btn-sm"
+                        style="margin-top: 10px">Save</button>
+                    <!-- Button trigger modal -->
+                    <button onclick="location.href = 'dag-list.html'" type="button" class="btn btn-warning btn-sm"
+                        style="margin-top: 10px">Close</button>
+                    <button onclick="" type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px" data-toggle="modal"
+                        data-target="#exampleModal">Preview
+                        Code</button>
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="col-2">
+                <div style="height: 100%; " id="template-diagram2">
+                    <div id="start"
+                        style="margin:0 auto;margin-top:20px;border-style:solid; border-color:green;width:fit-content;padding:15px;border-radius:10px">
+                        start</div>
+                    <div id="bq_query_execute_d" onclick="showList(this.id);"
+                        style="margin:0 auto;margin-top:20px;border-style:solid; border-color:green;width:fit-content;padding:15px;border-radius:10px">
+                        bq_query_execute</div>
+                    <div id="export_to_gcs_d" onclick="showList(this.id);"
+                        style="margin:0 auto;margin-top:20px; border-style:solid; border-color:green;width:fit-content;padding:15px;border-radius:10px">
+                        export_to_gcs</div>
+                    <div id="dataproc_pyspark_d" onclick="showList(this.id);"
+                        style="margin:0 auto;margin-top:20px; border-style:solid; border-color:tomato;width:fit-content;padding:15px;border-radius:10px">
+                        dataproc_pyspark</div>
+                </div>
+                <!--div style=" height: 100%;" id="template-diagram">
+                        <div id="exampleFormControlDraggable1" class="ui-widget-content bg-primary text-white"
+                        style="margin:20px ; padding:10px;">
+                        <div id="task_id"><b>task_id :</b> bq_query_execute</div>
+                        <div id="task_type">task_type: BigQueryExecuteQueryOperator</div>
+                        <div id="task_var1">sql: SELECT * FROM composer-templates-dev.hmh_demo.covid WHERE
+                            case_reported_date = "2021-08-18"</div>
+                    </div>
+                    <div id="exampleFormControlDraggable2" class="ui-widget-content bg-primary text-white"
+                        style="margin:20px ; padding:10px;">
+                        <div id="task_id"><b>task_id :</b> bq_query_execute</div>
+                        <div id="task_type">task_type: BigQueryExecuteQueryOperator</div>
+                        <div id="task_var1">sql: SELECT * FROM composer-templates-dev.hmh_demo.covid WHERE
+                            case_reported_date = "2021-08-18"</div>
+                    </div-->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leader-line/1.0.3/leader-line.min.js"></script>
+    <script>
+        document.getElementById("collapseOne").classList.remove("show");
+        document.getElementById("collapseTwo").classList.remove("show");
+        document.getElementById("collapseThree").classList.remove("show");
+
+        function showList(id) {
+            //alert(id);
+            document.getElementById("collapseOne").classList.remove("show");
+            document.getElementById("collapseTwo").classList.remove("show");
+            document.getElementById("collapseThree").classList.remove("show");
+            switch (id) {
+                case "bq_query_execute_d":
+                    document.getElementById("collapseOne").classList.add("show");
+                    break;
+                case "export_to_gcs_d":
+                    document.getElementById("collapseTwo").classList.add("show");
+                    break;
+                case "dataproc_pyspark_d":
+                    document.getElementById("collapseThree").classList.add("show");
+                    break;
+            }
+        }
+        // new LeaderLine(
+        //     document.getElementById("task_id_1"),
+        //     document.getElementById("task_id_2"),
+        // );
+        // new LeaderLine(
+        //     document.getElementById("task_id_2"),
+        //     document.getElementById("task_id_3"),
+        // );
+
+        /*
+        $(function () {
+            $("#exampleFormControlDraggable1").draggable();
+            $("#exampleFormControlDraggable2").draggable();
+        });
+        
+        */
+
+        // const yaml = require('js-yaml');
+        // const fs = require('fs');
+        // Get document, or throw exception on error
+
+        const yaml = `---
+dag_name: bq_to_gcs_simple_dag
+dag_template: simple_dag
+schedule_interval: '@hourly'
+tasks:
+- task_id: bq_query_execute
+  task_type: airflow.providers.google.cloud.operators.bigquery.BigQueryExecuteQueryOperator
+  sql: 'SELECT * FROM composer-templates-dev.hmh_demo.covid WHERE case_reported_date = "2021-08-18"'
+  use_legacy_sql: False
+  write_disposition: WRITE_TRUNCATE
+  allow_large_results: True
+  destination_dataset_table: composer-templates-shared.hmh_demo.tmp_covid
+- task_id: export_to_gcs
+  task_type: airflow.providers.google.cloud.transfers.bigquery_to_gcs.BigQueryToGCSOperator
+  source_project_dataset_table: composer-templates-dev.hmh_demo.tmp_covid
+  destination_cloud_storage_uris: "gs://hmh_composer_demo/export_files/covid.csv"
+  export_format: CSV
+  field_delimiter: ','
+  print_header: True
+`;
+        const py = `import airflow
+from datetime import datetime
+from airflow.models import DAG
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryExecuteQueryOperator
+from airflow.providers.google.cloud.transfers.bigquery_to_gcs import BigQueryToGCSOperator
+
+dag = DAG(
+    dag_id='bq_to_gcs_simple_dag',
+    schedule_interval='@hourly',
+    start_date=airflow.utils.dates.days_ago(0)
+)
+
+with dag:
+    start = DummyOperator( task_id='start')
+
+    bq_query_execute = BigQueryExecuteQueryOperator (
+                            task_id = 'bq_query_execute',
+                            sql = 'SELECT * FROM \`composer-templates-dev.hmh_demo.covid\` WHERE case_reported_date = "2021-08-18"',
+                            use_legacy_sql = False,
+                            write_disposition = 'WRITE_TRUNCATE',
+                            allow_large_results = True,
+                            destination_dataset_table = 'composer-templates-shared.hmh_demo.tmp_covid',
+                            trigger_rule='none_failed')
+
+    export_to_gcs = BigQueryToGCSOperator (
+                            task_id = 'export_to_gcs',
+                            source_project_dataset_table = 'composer-templates-dev.hmh_demo.tmp_covid',
+                            destination_cloud_storage_uris = 'gs://hmh_composer_demo/export_files/covid.csv',
+                            export_format = 'CSV',
+                            field_delimiter = ',',
+                            print_header = True,
+                            trigger_rule='none_failed')
+
+    start >> bq_query_execute >> export_to_gcs
+
+`;
+        // console.log(text);
+
+        $('#exampleFormControlTextarea1').html("");
+        $('#exampleFormControlTextarea2').html("");
+        document.getElementById('exampleFormControlTextarea2').append(py);
+        document.getElementById('exampleFormControlTextarea1').append(yaml);
+        showPython();
+
+        function showPython() {
+            document.getElementById('exampleFormControlTextarea2').style.visibility = "initial";
+            document.getElementById('exampleFormControlTextarea2').style.display = "initial";
+            document.getElementById('exampleFormControlTextarea1').style.visibility = "collapse";
+            document.getElementById('exampleFormControlTextarea1').style.display = "none";
+        }
+        function showYAML() {
+            document.getElementById('exampleFormControlTextarea2').style.visibility = "collapse";
+            document.getElementById('exampleFormControlTextarea2').style.display = "none";
+            document.getElementById('exampleFormControlTextarea1').style.visibility = "initial";
+            document.getElementById('exampleFormControlTextarea1').style.display = "initial";
+        }
+        // function update_diagram() {
+        //     try {
+        //         let text2 = document.getElementById('exampleFormControlTextarea1').value;
+        //         console.log(text2);
+
+        //         const doc = jsyaml.load(text2);
+        //         console.log(doc);
+
+        //         let di = document.getElementById("template-diagram");
+        //         di.innerHTML = '';
+        //         let i = 1;
+        //         let task_list = [];
+
+        //         doc.tasks.forEach(task => {
+        //             let w = document.createElement('div');
+        //             w.id = "exampleFormControlDraggable" + i;
+        //             w.classList.add('ui-widget-content');
+        //             w.classList.add('bg-primary');
+        //             w.classList.add('text-white');
+        //             w.style.margin = '20px';
+        //             w.style.padding = '10px';
+
+        //             let t1 = document.createElement('div');
+        //             t1.id = 'task_id' + i;
+        //             t1.append(task.task_id);
+        //             let t2 = document.createElement('div');
+        //             t2.id = 'task_type' + i;
+        //             let task_type = task.task_type.split('.');
+        //             task_type = task_type[task_type.length - 1] + '(';
+        //             for (attr in task) {
+        //                 if (attr == 'task_id' || attr == 'task_type') continue;
+        //                 task_type += attr + ' : ' + task[attr] + ',\n ';
+        //                 console.log(attr);
+        //             }
+        //             task_type += ')';
+        //             t2.append(task_type);
+        //             w.append(t1);
+        //             w.append(t2);
+        //             di.append(w);
+        //             task_list.push(w.id);
+
+        //             i = i + 1;
+        //         });
+        //         let parent = task_list[0];
+        //         i = 0;
+        //         task_list.forEach(task => {
+        //             if (i == 0) {
+        //                 i = 1;
+        //                 return;
+        //             }
+        //             new LeaderLine(
+        //                 document.getElementById(parent),
+        //                 document.getElementById(task),
+        //                 { dash: { animation: true } });
+        //             parent = task;
+        //         });
+
+        //     } catch (e) {
+        //         console.log(e);
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>
